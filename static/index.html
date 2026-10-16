@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CouponzGuru Brand Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">Couponz<b>Guru</b></span>
+      <span class="divider"></span>
+      <span class="app-name">Brand Finder</span>
+    </div>
+    <div id="sources" class="sources"></div>
+    <button id="toggleSearch" class="btn btn-primary">🔍 Search new brands</button>
+  </header>
+
+  <section id="searchPanel" class="panel search-panel hidden">
+    <div class="panel-head">
+      <h2>Find brands that aren't onboarded yet</h2>
+      <p class="muted">Uses AI (LangGraph + Groq/OpenAI/Gemini), web search, Brandfetch, website scraping, Apollo and BuiltWith. Brands already in your 6 country tabs are skipped automatically.</p>
+    </div>
+    <div class="field">
+      <label>Countries</label>
+      <div id="countryChips" class="chips"></div>
+    </div>
+    <div class="field">
+      <label>Categories <span class="muted">(“Any” lets the AI pick a mix)</span></label>
+      <div id="categoryChips" class="chips"></div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Brands per country × category <b id="perQueryVal">10</b></label>
+        <input id="perQuery" type="range" min="3" max="25" value="10" />
+      </div>
+      <div class="field">
+        <label>Max new brands this run <b id="maxNewVal">60</b></label>
+        <input id="maxNew" type="range" min="5" max="200" step="5" value="60" />
+      </div>
+      <button id="runSearch" class="btn btn-primary btn-lg">Start search</button>
+    </div>
+    <div id="progress" class="progress hidden">
+      <div class="progress-bar"><span></span></div>
+      <pre id="logs"></pre>
+    </div>
+  </section>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul id="categoryList"></ul>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <div id="countryFilter" class="pills"></div>
+        <input id="q" class="search-input" type="search" placeholder="Search brand…" />
+      </div>
+      <div class="result-head">
+        <h2 id="listTitle">All brands</h2>
+        <span id="count" class="muted"></span>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty hidden">
+        <div class="empty-emoji">🛍️</div>
+        <p>No brands here yet. Click <b>Search new brands</b> to discover some.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="drawer" class="drawer hidden" aria-hidden="true">
+    <div class="drawer-backdrop" data-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true">
+      <button class="close" data-close aria-label="Close">×</button>
+      <div id="drawerBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+gspread
+google-auth
+python-dotenv
+langgraph
+langchain-core
+langchain-groq
+langchain-openai
+langchain-google-genai
+httpx
+rapidfuzz
+playwright
+ddgs
